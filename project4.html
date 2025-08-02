@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FastAPI Backend Project | DevOps Portfolio</title>
+    <meta name="description" content="Backend API built with FastAPI, PostgreSQL and Docker">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <article class="project">
+            <header class="project-header">
+                <h1>Backend API with FastAPI, PostgreSQL & Docker</h1>
+                <p class="subtitle">Production-ready backend with authentication, CRUD operations and voting system</p>
+            </header>
+            
+            <section class="project-hero">
+                <figure class="project-hero-image">
+                    <img src="images/project4/site.png" alt="FastAPI Project Screenshot">
+                </figure>
+                
+                <aside class="project-meta">
+                    <div class="meta-item">
+                        <h3>Role</h3>
+                        <p>Backend Developer/DevOps Engineer</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Project Type</h3>
+                        <p>Backend API Development</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Technologies</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">FastAPI</span>
+                            <span class="tech-item">PostgreSQL</span>
+                            <span class="tech-item">Docker</span>
+                            <span class="tech-item">JWT</span>
+                            <span class="tech-item">SQLAlchemy</span>
+                            <span class="tech-item">Pydantic</span>
+                            <span class="tech-item">Python</span>
+                            <span class="tech-item">Psycopg2</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://github.com/spkumar17/FastAPI.git" class="github-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </aside>
+            </section>
+            
+            <section class="project-content">
+                <section class="project-section">
+                    <h2>Project Overview</h2>
+                    <p>Built a production-ready backend API using FastAPI with PostgreSQL as the database, containerized with Docker. The API implements user authentication with JWT tokens, CRUD operations for posts, and a voting system. The application follows MVC architecture with proper separation of concerns and includes comprehensive request/response validation using Pydantic models.</p>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Features</h2>
+                    
+                    <article>
+                        <h3>1. User Authentication</h3>
+                        <p>Secure authentication system implementation:</p>
+                        <ul>
+                            <li>JWT token-based authentication using python-jose</li>
+                            <li>Password hashing with bcrypt</li>
+                            <li>Protected routes with dependency injection</li>
+                            <li>Token expiration and refresh mechanism</li>
+                            <li>User registration and login endpoints</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>2. Post Management</h3>
+                        <p>Complete CRUD functionality for posts:</p>
+                        <ul>
+                            <li>Create, Read, Update and Delete operations</li>
+                            <li>Ownership-based permissions</li>
+                            <li>Pagination and filtering support</li>
+                            <li>Data validation with Pydantic models</li>
+                            <li>Consistent response models</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>3. Voting System</h3>
+                        <p>Interactive voting mechanism:</p>
+                        <ul>
+                            <li>Upvote/downvote posts</li>
+                            <li>Prevent duplicate votes</li>
+                            <li>Real-time vote count updates</li>
+                            <li>Integrated with post retrieval</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>4. Database Integration</h3>
+                        <p>PostgreSQL database setup:</p>
+                        <ul>
+                            <li>SQLAlchemy ORM for database operations</li>
+                            <li>Psycopg2 as PostgreSQL adapter</li>
+                            <li>Database models with relationships</li>
+                            <li>Automatic schema migrations</li>
+                            <li>Connection pooling</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>5. Docker Deployment</h3>
+                        <p>Containerized application setup:</p>
+                        <ul>
+                            <li>Multi-container Docker environment</li>
+                            <li>Persistent PostgreSQL volumes</li>
+                            <li>Environment variables for configuration</li>
+                            <li>Single command deployment</li>
+                            <li>Production-ready setup</li>
+                        </ul>
+                    </article>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Technical Implementation</h2>
+                    
+                    <article>
+                        <h3>API Design</h3>
+                        <p>RESTful API implementation details:</p>
+                        <ul>
+                            <li>Resource-oriented endpoints</li>
+                            <li>Proper HTTP status codes</li>
+                            <li>Query parameters for filtering</li>
+                            <li>Request/Response validation</li>
+                            <li>Error handling middleware</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Code Organization</h3>
+                        <p>Modular project structure:</p>
+                        <ul>
+                            <li>Separate routers for different resources</li>
+                            <li>Dependency injection for reusable logic</li>
+                            <li>Database models in separate module</li>
+                            <li>Configuration management</li>
+                            <li>Type hints throughout the codebase</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Security</h3>
+                        <p>Security measures implemented:</p>
+                        <ul>
+                            <li>Environment variables for secrets</li>
+                            <li>Password hashing</li>
+                            <li>CORS configuration</li>
+                        </ul>
+                    </article>
+                    
+    
+                </section>
+                
+        
+                <section class="project-section">
+                    <h2>Key Achievements</h2>
+                    <ul>
+                        <li>Designed and implemented a production-ready backend API</li>
+                        <li>Implemented secure JWT authentication system</li>
+                        <li>Created comprehensive CRUD operations for posts</li>
+                        <li>Developed interactive voting system</li>
+                        <li>Containerized application with Docker and Docker Compose</li>
+                        <li>Configured PostgreSQL with proper persistence</li>
+                        <li>Followed best practices for FastAPI development</li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Work Samples</h2>
+                    <div class="work-samples">
+                        <figure class="work-sample" onclick="openGallery('fastapi')">
+                            <img src="images/project4/site.png" alt="API Documentation Screenshot">
+                            <figcaption class="work-sample-caption">
+                                <h3>API Screenshots</h3>
+                                <p>5 images</p>
+                            </figcaption>
+                        </figure>   
+                    </div>
+                </section>
+            </section>
+        </article>
+        
+        <!-- Gallery Modal -->
+        <div id="galleryModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+            <span class="close" onclick="closeGallery()" aria-label="Close gallery">&times;</span>
+            <div class="modal-content">
+                <span class="nav-arrow prev" onclick="changeSlide(-1)" aria-label="Previous image">&#10094;</span>
+                <span class="nav-arrow next" onclick="changeSlide(1)" aria-label="Next image">&#10095;</span>
+                <img id="modalImage" class="modal-image" src="" alt="">
+                <div id="modalCaption" class="modal-caption"></div>
+                <div class="gallery-thumbnails" id="thumbnailContainer"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Gallery data
+        const galleries = {
+            'fastapi': {
+                title: "FastAPI Implementation Screenshots",
+                images: [
+                
+                    {
+                        src: 'images/project4/login.png',
+                        caption: 'Login endpoint with JWT authentication'
+                    },
+                    {
+                        src: 'images/project4/site.png',
+                        caption: 'API documentation with Inbuilt fastapi docs'
+                    },
+                    {
+                        src: 'images/project4/Dockercompose.png',
+                        caption: 'Docker Compose file for multi-container setup'
+                    },
+                    {
+                        src: 'images/project4/dockerlist.png',
+                        caption: 'Dockerfile for FastAPI application'
+                    },
+                    {
+                        src: 'images/project4/postman.png',
+                        caption: 'Postman collection for API testing'
+                    }
+                    
+                ]
+            }
+        };
+        
+        let currentGallery = null;
+        let currentSlideIndex = 0;
+        
+        function openGallery(galleryId) {
+            currentGallery = galleryId;
+            currentSlideIndex = 0;
+            updateGallery();
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('modalTitle').textContent = galleries[galleryId].title;
+        }
+        
+        function closeGallery() {
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        
+        function changeSlide(direction) {
+            const gallery = galleries[currentGallery];
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = gallery.images.length - 1;
+            } else if (currentSlideIndex >= gallery.images.length) {
+                currentSlideIndex = 0;
+            }
+            
+            updateGallery();
+        }
+        
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateGallery();
+        }
+        
+        function updateGallery() {
+            const gallery = galleries[currentGallery];
+            const currentImage = gallery.images[currentSlideIndex];
+            
+            // Update main image and caption
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = currentImage.src;
+            modalImage.alt = currentImage.caption;
+            document.getElementById('modalCaption').textContent = currentImage.caption;
+            
+            // Update thumbnails
+            const thumbnailContainer = document.getElementById('thumbnailContainer');
+            thumbnailContainer.innerHTML = '';
+            
+            gallery.images.forEach((image, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = image.src;
+                thumbnail.alt = image.caption;
+                thumbnail.className = `thumbnail ${index === currentSlideIndex ? 'active' : ''}`;
+                thumbnail.onclick = () => goToSlide(index);
+                thumbnail.setAttribute('aria-label', `View image ${index + 1}: ${image.caption}`);
+                thumbnailContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Close modal when clicking outside image
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('galleryModal')) {
+                closeGallery();
+            }
+        };
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (modal.style.display === 'block') {
+                if (event.key === 'Escape') {
+                    closeGallery();
+                } else if (event.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

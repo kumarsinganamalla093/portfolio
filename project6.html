@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MERN Stack CI/CD Pipeline | DevOps Portfolio</title>
+    <meta name="description" content="Automated container deployment of a MERN application with security scanning and quality checks using GitLab CI/CD.">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <article class="project">
+            <header class="project-header">
+                <h1>MERN Stack CI/CD Pipeline</h1>
+                <p class="subtitle">Automated container deployment with security scanning and quality checks using GitLab CI/CD</p>
+            </header>
+            
+            <section class="project-hero">
+                <figure class="project-hero-image">
+                    <!-- Corrected image path for the main project hero image -->
+                    <img src="images/project6/download.png" alt="MERN Stack CI/CD Deployment Architecture Diagram">
+                    <figcaption>Conceptual architecture of the MERN Stack CI/CD pipeline.</figcaption>
+                </figure>
+                
+                <aside class="project-meta">
+                    <div class="meta-item">
+                        <h3>Role</h3>
+                        <p>DevOps Engineer</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Project Type</h3>
+                        <p>CI/CD Pipeline Implementation & Container Orchestration</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Key Technologies</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">Docker</span>
+                            <span class="tech-item">Docker Compose</span>
+                            <span class="tech-item">GitLab CI/CD</span>
+                            <span class="tech-item">MERN Stack</span>
+                            <span class="tech-item">MongoDB</span>
+                            <span class="tech-item">Trivy</span>
+                            <span class="tech-item">SonarQube</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://github.com/spkumar17/gitlab-ci-MERN-stack.git" class="github-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </aside>
+            </section>
+            
+            <section class="project-content">
+                <section class="project-section">
+                    <h2>Project Overview</h2>
+                    <p>This project involved designing and implementing a robust CI/CD pipeline for a full-stack MERN (MongoDB, Express.js, React, Node.js) application. The core objective was to automate the build, security scanning, quality assurance, and deployment processes using Docker for containerization and GitLab CI/CD for orchestration. This solution ensures reliable, secure, and consistent deployments across environments.</p>
+                </section>
+
+                <section class="project-section">
+                    <h2>Core Components & Pipeline Stages</h2>
+                    <p>The solution leverages Docker Compose to manage the MERN application's services and integrates various tools within a multi-stage GitLab CI/CD pipeline:</p>
+                    
+                    <div class="feature-grid">
+                        <div class="feature-card">
+                            <i class="fas fa-box"></i>
+                            <h3>Containerization (Docker Compose)</h3>
+                            <p>Packaged the frontend (React), backend (Node.js/Express), and database (MongoDB) into isolated Docker containers, defining their networking and persistent storage for MongoDB.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <i class="fas fa-shield-alt"></i>
+                            <h3>Security Scanning (Trivy)</h3>
+                            <p>Integrated Trivy for comprehensive vulnerability scanning of both application filesystem and built container images, ensuring early detection of security risks.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <i class="fas fa-tasks"></i>
+                            <h3>Code Quality Gates (SonarQube)</h3>
+                            <p>Implemented SonarQube analysis to enforce stringent code quality standards and identify potential bugs or code smells before deployment.</p>
+                        </div>
+                        
+                        <div class="feature-card">
+                            <i class="fas fa-rocket"></i>
+                            <h3>Automated CI/CD Pipeline</h3>
+                            <p>Configured a 5-stage GitLab CI/CD workflow to automate the entire deployment lifecycle, including parallel execution for efficiency.</p>
+                        </div>
+                    </div>
+                </section>
+
+                <section class="project-section">
+                    <h2>Implementation Details</h2>
+                    
+                    <h3>Container Architecture (<code>docker-compose.yml</code>)</h3>
+                    <p>The application's services are defined and orchestrated using the following Docker Compose configuration:</p>
+                    <pre><code class="language-yaml">version: '3.8'
+
+services:
+  frontend:
+    build: ./mern/frontend
+    ports:
+      - "5173:5173"
+    networks:
+      - mern_network
+    environment:
+      REACT_APP_API_URL: http://backend:5050
+
+  backend:
+    build: ./mern/backend
+    ports:
+      - "5050:5050"
+    networks:
+      - mern_network
+    environment:
+      MONGO_URI: mongodb://mongodb:27017/mydatabase
+    depends_on:
+      - mongodb
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    networks:
+      - mern_network
+    volumes:
+      - mongo-data:/data/db
+
+networks:
+  mern_network:
+    driver: bridge
+
+volumes:
+  mongo-data:
+    driver: local
+</code></pre>
+                    <p>This setup ensures proper communication between services and persistent data storage for MongoDB.</p>
+                    
+                    <h3>GitLab CI/CD Pipeline Stages</h3>
+                    <ol>
+                        <li><strong>Build</strong>: Installs application dependencies and prepares artifacts for subsequent stages.</li>
+                        <li><strong>Security Scan</strong>: Executes Trivy and SonarQube analysis on the source code.</li>
+                        <li><strong>Docker Build</strong>: Creates optimized Docker images for frontend and backend, tagged with pipeline IDs.</li>
+                        <li><strong>Image Scan</strong>: Performs vulnerability scanning on the newly built Docker images using Trivy.</li>
+                        <li><strong>Deployment</strong>: Pushes approved images to a container registry, ready for deployment to target environments.</li>
+                    </ol>
+                    
+                    <div class="note">
+                        <h4>Key Pipeline Features</h4>
+                        <ul>
+                            <li>Artifact passing between pipeline stages to ensure consistency.</li>
+                            <li>Parallel execution of frontend and backend jobs for faster pipeline runs.</li>
+                            <li>Utilization of multiple GitLab runners for efficient resource allocation.</li>
+                            <li>Integrated security and quality gates to prevent vulnerable or low-quality code from reaching production.</li>
+                        </ul>
+                    </div>
+                </section>
+        
+                <section class="project-section">
+                    <h2>Key Achievements</h2>
+                    <ul>
+                        <li>Successfully containerized a full-stack MERN application using Docker and Docker Compose.</li>
+                        <li>Designed and implemented a robust, automated CI/CD pipeline with GitLab CI/CD.</li>
+                        <li>Integrated industry-standard security scanning (Trivy) and code quality analysis (SonarQube) into the pipeline.</li>
+                        <li>Ensured data persistence for the MongoDB database using Docker volumes.</li>
+                        <li>Streamlined the development-to-deployment workflow, reducing manual effort and improving release frequency.</li>
+                        <li>Enhanced application security posture through automated vulnerability detection and quality gates.</li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Work Samples</h2>
+                    <div class="work-samples">
+                        <figure class="work-sample" onclick="openGallery('cicd-pipeline')">
+                            <!-- Corrected image path for work samples thumbnail -->
+                            <img src="images/project6/gitlab_pipeline_overview.png" alt="CI/CD Pipeline Screenshots">
+                            <figcaption class="work-sample-caption">
+                                <h3>GitLab CI/CD Pipeline Visuals</h3>
+                                <p>6 images</p>
+                            </figcaption>
+                        </figure> 
+                    </div>
+                </section>
+            </section>
+            
+            <!-- Gallery Modal -->
+            <div id="galleryModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+                <span class="close" onclick="closeGallery()" aria-label="Close gallery">&times;</span>
+                <div class="modal-content">
+                    <span class="nav-arrow prev" onclick="changeSlide(-1)" aria-label="Previous image">&#10094;</span>
+                    <span class="nav-arrow next" onclick="changeSlide(1)" aria-label="Next image">&#10095;</span>
+                    <h2 id="modalTitle" class="modal-title"></h2> <!-- Added id="modalTitle" -->
+                    <img id="modalImage" class="modal-image" src="" alt="">
+                    <div id="modalCaption" class="modal-caption"></div>
+                    <div class="gallery-thumbnails" id="thumbnailContainer"></div>
+                </div>
+            </div>
+        </article>
+    </main>
+                                
+    <script>
+        // Gallery data
+        const galleries = {
+            'cicd-pipeline': { // Changed gallery ID to be more descriptive for CI/CD visuals
+                title: "GitLab CI/CD Pipeline Visuals",
+                images: [
+                    {
+                        src: 'images/project6/composeup.png',
+                        caption: 'GitLab CI/CD Pipeline Overview'
+                    },
+                    {
+                        src: 'images/project6/composeup2.png',
+                        caption: 'GitLab Runners Configuration'
+                    },
+                    {
+                        src: 'images/project6/datainmongosh.png',
+                        caption: 'SonarQube Integration with GitLab'
+                    },
+                    {
+                        src: 'images/project6/Dockercommands.png',
+                        caption: 'Frontend Image Scan with Trivy'
+                    },
+                    {
+                        src: 'images/project6/Emprecords.png',
+                        caption: 'Running Docker Containers for the Application'
+                    },
+                    {
+                        src: 'images/project6/Frontendweb.png',
+                        caption: 'Docker Images Pulled for the Application'
+                    }
+                ]
+            }
+           
+        };
+        
+        let currentGalleryId = null;
+        let currentSlideIndex = 0;
+        
+        function openGallery(galleryId) {
+            currentGalleryId = galleryId;
+            currentSlideIndex = 0;
+            updateGallery();
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            // Set the modal title from the gallery data
+            document.getElementById('modalTitle').textContent = galleries[currentGalleryId].title;
+        }
+        
+        function closeGallery() {
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        
+        function changeSlide(direction) {
+            const gallery = galleries[currentGalleryId];
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = gallery.images.length - 1;
+            } else if (currentSlideIndex >= gallery.images.length) {
+                currentSlideIndex = 0;
+            }
+            
+            updateGallery();
+        }
+        
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateGallery();
+        }
+        
+        function updateGallery() {
+            const gallery = galleries[currentGalleryId];
+            // Corrected: Access the specific image object from the array
+            const currentImage = gallery.images[currentSlideIndex]; 
+            
+            // Update main image and caption
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = currentImage.src;
+            modalImage.alt = currentImage.caption;
+            document.getElementById('modalCaption').textContent = currentImage.caption;
+            
+            // Update thumbnails
+            const thumbnailContainer = document.getElementById('thumbnailContainer');
+            thumbnailContainer.innerHTML = '';
+            
+            gallery.images.forEach((image, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = image.src;
+                thumbnail.alt = image.caption;
+                thumbnail.className = `thumbnail ${index === currentSlideIndex ? 'active' : ''}`;
+                thumbnail.onclick = () => goToSlide(index);
+                thumbnail.setAttribute('aria-label', `View image ${index + 1}: ${image.caption}`);
+                thumbnailContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Close modal when clicking outside image
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('galleryModal')) {
+                closeGallery();
+            }
+        };
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (modal.style.display === 'block') {
+                if (event.key === 'Escape') {
+                    closeGallery();
+                } else if (event.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloud Architecture with Terraform | DevOps Portfolio</title>
+    <meta name="description" content="Secure and scalable cloud architecture design and deployment using Terraform">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <article class="project">
+            <header class="project-header">
+                <h1>Cloud Architecture Design and Deployment with Terraform</h1>
+                <p class="subtitle">Secure and scalable cloud infrastructure with Public, Private, and Secure subnets</p>
+            </header>
+            
+            <section class="project-hero">
+                <figure class="project-hero-image">
+                    <img src="images/project3/arch-aws.png" alt="Cloud Architecture Diagram">
+                </figure>
+                
+                <aside class="project-meta">
+                    <div class="meta-item">
+                        <h3>Role</h3>
+                        <p>Cloud Architect/DevOps Engineer</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Project Type</h3>
+                        <p>Cloud Infrastructure Design</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Technologies</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">Terraform</span>
+                            <span class="tech-item">AWS</span>
+                            <span class="tech-item">VPC</span>
+                            <span class="tech-item">EC2</span>
+                            <span class="tech-item">RDS</span>
+                            <span class="tech-item">Packer</span>
+                            <span class="tech-item">Load Balancer</span>
+                            <span class="tech-item">Auto Scaling</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://github.com/spkumar17/TF_infra_v2.git" class="github-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </aside>
+            </section>
+            
+            <section class="project-content">
+                <section class="project-section">
+                    <h2>Project Overview</h2>
+                    <p>Designed and deployed a secure and scalable cloud architecture using Terraform, featuring three subnet types: Public, Private, and Secure. This architecture includes a highly available Load Balancer, an Auto Scaling Group (ASG) for the application tier, and a secure RDS instance for the database tier. Additionally, VPC Flow Logs were enabled for monitoring and troubleshooting. The infrastructure was built using a custom golden VM image created with Packer for consistent deployments.</p>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Architecture Components</h2>
+                    
+                    <article>
+                        <h3>1. Subnet Design</h3>
+                        <p>The architecture implements a three-tier subnet strategy for optimal security and connectivity:</p>
+                        <ul>
+                            <li><strong>Public Subnets</strong>: Routes traffic through an Internet Gateway for inbound and outbound internet access.</li>
+                            <li><strong>Private Subnets</strong>: Utilizes a NAT Gateway for secure outbound internet access while blocking inbound internet traffic.</li>
+                            <li><strong>Secure Subnets</strong>: Completely isolated from both Internet Gateway and NAT Gateway, ensuring maximum security for sensitive resources.</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>2. Load Balancer</h3>
+                        <p>Key features of the load balancing solution:</p>
+                        <ul>
+                            <li>Deployed in Public subnets across two Availability Zones (AZs) for high availability</li>
+                            <li>Configured with listeners and target groups to route traffic to the application tier</li>
+                            <li>Implements health checks to ensure traffic only reaches healthy instances</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>3. Auto Scaling Group (ASG)</h3>
+                        <p>The application tier deployment strategy:</p>
+                        <ul>
+                            <li>Deployed in Private subnets across two AZs</li>
+                            <li>Ensures no public IPs are assigned to instances</li>
+                            <li>Access enabled via AWS Systems Manager (SSM) for secure management</li>
+                            <li>Configured with desired, minimum, and maximum instance counts set to 1 for cost optimization</li>
+                            <li>Uses custom golden AMI created with Packer for consistent deployments</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>4. RDS Database</h3>
+                        <p>Secure database implementation:</p>
+                        <ul>
+                            <li>Deployed in the Secure subnet to reduce costs and enhance security</li>
+                            <li>Configured for restricted access, allowing only the application tier to communicate with the database</li>
+                            <li>Multi-AZ deployment option available for production environments</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>5. Monitoring and Troubleshooting</h3>
+                        <p>Implemented comprehensive monitoring:</p>
+                        <ul>
+                            <li>Enabled VPC Flow Logs to capture and analyze application traffic</li>
+                            <li>CloudWatch metrics for performance monitoring</li>
+                            <li>Configured alarms for critical events</li>
+                        </ul>
+                    </article>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Features</h2>
+                    
+                    <article>
+                        <h3>Security Implementation</h3>
+                        <p>Multiple security layers implemented:</p>
+                        <ul>
+                            <li>Network segmentation with Public, Private, and Secure subnets</li>
+                            <li>Security groups with least-privilege access rules</li>
+                            <li>No public IPs assigned to application or database instances</li>
+                            <li>Secure access to instances via AWS Systems Manager</li>
+                            <li>Database tier completely isolated from internet</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>High Availability</h3>
+                        <p>Designed for fault tolerance:</p>
+                        <ul>
+                            <li>Load Balancer distributed across multiple AZs</li>
+                            <li>Auto Scaling Group spans multiple AZs</li>
+                            <li>Option for Multi-AZ RDS deployment</li>
+                            <li>Stateless application design for horizontal scaling</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Infrastructure as Code</h3>
+                        <p>Terraform implementation details:</p>
+                        <ul>
+                            <li>Modular design for reusable components</li>
+                            <li>Variables for environment-specific configurations</li>
+                            <li>State management with remote backend</li>
+                            <li>Version-controlled infrastructure definitions</li>
+                            <li>Automated provisioning workflow</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Golden Image with Packer</h3>
+                        <p>Custom VM image benefits:</p>
+                        <ul>
+                            <li>Consistent environment for all deployments</li>
+                            <li>Pre-configured with necessary software and security patches</li>
+                            <li>Reduced deployment time</li>
+                            <li>Versioned images for rollback capability</li>
+                            <li>Automated build process</li>
+                        </ul>
+                    </article>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Architecture Diagram</h2>
+                    <figure>
+                        <img src="images/project3/arch-aws.png" alt="Cloud Architecture Diagram" class="architecture-diagram">
+                        <figcaption>Cloud Architecture with Public, Private, and Secure Subnets</figcaption>
+                    </figure>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Achievements</h2>
+                    <ul>
+                        <li>Designed and implemented a secure three-tier cloud architecture</li>
+                        <li>Automated infrastructure deployment using Terraform</li>
+                        <li>Created custom golden images with Packer for consistent deployments</li>
+                        <li>Implemented proper network segmentation for security</li>
+                        <li>Configured high availability components (Load Balancer, ASG)</li>
+                        <li>Enabled comprehensive monitoring with VPC Flow Logs</li>
+                        <li>Deployed PetClinic Java-based application in the architecture</li>
+                        <li>Documented the infrastructure design and deployment process</li>
+                    </ul>
+                </section>
+                    </div>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Work Samples</h2>
+                    <div class="work-samples">
+                        <figure class="work-sample" onclick="openGallery('terraform')">
+                            <img src="images/project3/arch-aws.png" alt="Terraform Configuration">
+                            <figcaption class="work-sample-caption">
+                                <h3>Terraform Screenshots</h3>
+                                <p>2 images</p>
+                            </figcaption>
+                        </figure>   
+                    </div>
+                </section>
+            </section>
+        </article>
+        
+        <!-- Gallery Modal -->
+        <div id="galleryModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+            <span class="close" onclick="closeGallery()" aria-label="Close gallery">&times;</span>
+            <div class="modal-content">
+                <span class="nav-arrow prev" onclick="changeSlide(-1)" aria-label="Previous image">&#10094;</span>
+                <span class="nav-arrow next" onclick="changeSlide(1)" aria-label="Next image">&#10095;</span>
+                <img id="modalImage" class="modal-image" src="" alt="">
+                <div id="modalCaption" class="modal-caption"></div>
+                <div class="gallery-thumbnails" id="thumbnailContainer"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Gallery data
+        const galleries = {
+            'terraform': {
+                title: "Terraform Implementation Screenshots",
+                images: [
+                {
+                    src: 'images/project3/tfstatelist.png',
+                    caption: 'Terraform plan output showing infrastructure changes'
+                },
+                {
+                    src: 'images/project3/modules.png',
+                    caption: 'Successful Terraform apply execution'
+                }
+            ]
+            }
+        };
+        
+        let currentGallery = null;
+        let currentSlideIndex = 0;
+        
+        function openGallery(galleryId) {
+            currentGallery = galleryId;
+            currentSlideIndex = 0;
+            updateGallery();
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('modalTitle').textContent = galleries[galleryId].title;
+        }
+        
+        function closeGallery() {
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        
+        function changeSlide(direction) {
+            const gallery = galleries[currentGallery];
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = gallery.images.length - 1;
+            } else if (currentSlideIndex >= gallery.images.length) {
+                currentSlideIndex = 0;
+            }
+            
+            updateGallery();
+        }
+        
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateGallery();
+        }
+        
+        function updateGallery() {
+            const gallery = galleries[currentGallery];
+            const currentImage = gallery.images[currentSlideIndex];
+            
+            // Update main image and caption
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = currentImage.src;
+            modalImage.alt = currentImage.caption;
+            document.getElementById('modalCaption').textContent = currentImage.caption;
+            
+            // Update thumbnails
+            const thumbnailContainer = document.getElementById('thumbnailContainer');
+            thumbnailContainer.innerHTML = '';
+            
+            gallery.images.forEach((image, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = image.src;
+                thumbnail.alt = image.caption;
+                thumbnail.className = `thumbnail ${index === currentSlideIndex ? 'active' : ''}`;
+                thumbnail.onclick = () => goToSlide(index);
+                thumbnail.setAttribute('aria-label', `View image ${index + 1}: ${image.caption}`);
+                thumbnailContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Close modal when clicking outside image
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('galleryModal')) {
+                closeGallery();
+            }
+        };
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (modal.style.display === 'block') {
+                if (event.key === 'Escape') {
+                    closeGallery();
+                } else if (event.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

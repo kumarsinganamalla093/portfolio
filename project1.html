@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EKS Cluster Management | DevOps Portfolio</title>
+    <meta name="description" content="Amazon EKS Cluster Management project showcasing Kubernetes infrastructure with observability, persistent storage, and RBAC on AWS">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <article class="project">
+            <header class="project-header">
+                <h1>Amazon EKS Cluster Management</h1>
+                <p class="subtitle">A fully automated Kubernetes cluster with observability, persistent storage, and RBAC on AWS</p>
+            </header>
+            
+            <section class="project-hero">
+                <figure class="project-hero-image">
+                    <img src="images/kubearchimage.png" alt="EKS Architecture Diagram">
+                </figure>
+                
+                <aside class="project-meta">
+                    <div class="meta-item">
+                        <h3>Role</h3>
+                        <p>DevOps Engineer</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Project Name</h3>
+                        <p>Workloads deployment on Amazon EKS</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Technologies</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">Terraform</span>
+                            <span class="tech-item">Amazon EKS</span>
+                            <span class="tech-item">Kubernetes</span>
+                            <span class="tech-item">ArgoCD</span>
+                            <span class="tech-item">Helm</span>
+                            <span class="tech-item">Prometheus</span>
+                            <span class="tech-item">Grafana</span>
+                            <span class="tech-item">AWS IAM</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://github.com/spkumar17/about_project1.git" class="github-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </aside>
+            </section>
+            
+            <section class="project-content">
+                <section class="project-section">
+                    <h2>Project Overview</h2>
+                    <p>Designed and implemented a comprehensive Amazon Elastic Kubernetes Service (EKS) cluster with full observability, persistent storage, and role-based access control. The infrastructure was provisioned using Terraform, following Infrastructure as Code (IaC) principles. The solution implemented GitOps practices using ArgoCD for continuous deployment and setting up monitoring with Prometheus and Grafana, implementing persistent storage with EBS CSI driver, and configuring fine-grained access control with RBAC.</p>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Components</h2>
+                    
+                    <article>
+                        <h3>Infrastructure Provisioning with Terraform</h3>
+                        <p>The EKS cluster infrastructure was defined as code using Terraform modules. This approach:</p>
+                        <ul>
+                            <li>Automates the creation of the EKS cluster with specified Kubernetes version (1.30)</li>
+                            <li>Configures worker nodes using t3.medium instances in private subnets</li>
+                            <li>Integrates with existing VPC infrastructure</li>
+                            <li>Enables reproducible infrastructure deployments</li>
+                            <li>Scales worker nodes automatically up to 3 instances based on demand</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Cluster Configuration</h3>
+                        <p>After provisioning, the EKS cluster was configured for local access by:</p>
+                        <ul>
+                            <li>Setting up kubectl context to interact with the cluster</li>
+                            <li>Establishing secure communication between local environment and EKS API</li>
+                            <li>Enabling immediate cluster management capabilities</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Tooling Installation</h3>
+                        <p>Essential Kubernetes tools were installed to streamline operations:</p>
+                        <ul>
+                            <li><strong>eksctl</strong>: CLI tool for creating and managing EKS clusters</li>
+                            <li><strong>Helm</strong>: Package manager for Kubernetes applications</li>
+                            <li>These tools provide simplified cluster management and application deployment capabilities</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Persistent Storage</h3>
+                        <p>The AWS EBS CSI Driver was implemented to:</p>
+                        <ul>
+                            <li>Enable stateful applications with persistent volumes</li>
+                            <li>Automatically provision EBS volumes for Kubernetes pods</li>
+                            <li>Handle dynamic volume provisioning and lifecycle management</li>
+                            <li>Support various storage classes with different performance characteristics</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Monitoring Stack</h3>
+                        <p>A comprehensive observability solution was deployed:</p>
+                        <ul>
+                            <li><strong>Prometheus</strong>: Collected and stored cluster and application metrics</li>
+                            <li><strong>Grafana</strong>: Provided visualization dashboards for metrics analysis</li>
+                            <li>Enabled real-time monitoring of cluster health and performance</li>
+                            <li>Supported capacity planning and troubleshooting</li>
+                        </ul>
+                    </article>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Technical Challenges & Solutions</h2>
+                    
+                    <article>
+                        <h3>Terraform State Management</h3>
+                        <p>Remote state management was implemented to:</p>
+                        <ul>
+                            <li>Store Terraform state securely in S3 with encryption</li>
+                            <li>Enable team collaboration through state locking via DynamoDB</li>
+                            <li>Prevent state corruption during concurrent operations</li>
+                            <li>Maintain history of infrastructure changes</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>IRSA for EBS CSI Driver</h3>
+                        <p>The transition to pod identity associations addressed:</p>
+                        <ul>
+                            <li>Deprecation of IAM Roles for Service Accounts (IRSA) for EBS CSI driver</li>
+                            <li>Secure credential management for storage operations</li>
+                            <li>Fine-grained IAM permissions for storage operations</li>
+                            <li>Automated migration from legacy authentication methods</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>RBAC Implementation</h3>
+                        <p>Role-based access control was configured to:</p>
+                        <ul>
+                            <li>Map IAM users to Kubernetes RBAC roles</li>
+                            <li>Provide namespace isolation between development and production</li>
+                            <li>Implement principle of least privilege for cluster access</li>
+                            <li>Enable self-service access within defined boundaries</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Monitoring Configuration</h3>
+                        <p>Application monitoring was enhanced by:</p>
+                        <ul>
+                            <li>Configuring Prometheus to automatically discover and scrape metrics endpoints</li>
+                            <li>Enabling Spring Boot Actuator metrics collection</li>
+                            <li>Providing application-level visibility alongside infrastructure metrics</li>
+                            <li>Supporting custom metric collection for business-specific monitoring</li>
+                        </ul>
+                    </article>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Architecture Diagram</h2>
+                    <figure>
+                        <img src="images/kubearchimage.png" alt="Detailed EKS Architecture" class="architecture-diagram">
+                        <figcaption>EKS Cluster Architecture Overview</figcaption>
+                    </figure>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Achievements</h2>
+                    <ul>
+                        <li>Provisioned EKS infrastructure using Terraform with reusable modules</li>
+                        <li>Successfully implemented persistent storage with EBS CSI driver using pod identity associations</li>
+                        <li>Established comprehensive monitoring with Prometheus and Grafana with Email alerting</li>
+                        <li>Implemented fine-grained RBAC controls for multi-team access</li>
+                        <li>Configured alerting for critical cluster metrics</li>
+                        <li>Developed health probes for application reliability</li>
+                        <li>Implemented proper resource limits with LimitRange</li>
+                        <li>Implemented GitOps workflow using ArgoCD for declarative continuous deployment</li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Work Samples</h2>
+                    <div class="work-samples">
+                
+                        
+                       
+                        <!-- Work samples -->
+                        <figure class="work-sample" onclick="openGallery('monitoring')">
+                            <img src="images/project1/amazon-eks-icon.png" alt="EKS">
+                            <figcaption class="work-sample-caption">
+                                <h3>Work Samples</h3>
+                                <p>9 images</p>
+                            </figcaption>
+                        </figure>
+                    </div>
+                </section>
+            </section>
+        </article>
+        
+        <!-- Gallery Modal -->
+        <div id="galleryModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+            <span class="close" onclick="closeGallery()" aria-label="Close gallery">&times;</span>
+            <div class="modal-content">
+                <span class="nav-arrow prev" onclick="changeSlide(-1)" aria-label="Previous image">&#10094;</span>
+                <span class="nav-arrow next" onclick="changeSlide(1)" aria-label="Next image">&#10095;</span>
+                <img id="modalImage" class="modal-image" src="" alt="">
+                <div id="modalCaption" class="modal-caption"></div>
+                <div class="gallery-thumbnails" id="thumbnailContainer"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Gallery data
+        const galleries = {
+            'monitoring': {
+                title: "Monitoring Stack",
+                images: [
+            {
+                src: 'images/project1/argo-overview.png',
+                caption: 'ArgoCD Overview Dashboard'
+            },
+            {
+                src: 'images/project1/grafana1.png',
+                caption: 'Grafana Monitoring Dashboard'
+            },
+            {
+                src: 'images/project1/petclinic-resources.png',
+                caption: 'Petclinic Application Resources'
+            },
+            {
+                src: 'images/project1/pods-in-cmd-.png',
+                caption: 'Kubernetes Pods in Command Line'
+            },
+            {
+                src: 'images/project1/prometheus-slack.png',
+                caption: 'Prometheus Slack Alert Configuration'
+            },
+            {
+                src: 'images/project1/Prometheus-targets.png',
+                caption: 'Prometheus Monitoring Targets'
+            },
+            {
+                src: 'images/project1/PV.png',
+                caption: 'Persistent Volumes Configuration'
+            },
+            {
+                src: 'images/project1/terraformsnip.png',
+                caption: 'Terraform Configuration Snippet'
+            },
+            {
+                src: 'images/project1/users-authorization.png',
+                caption: 'Users Authorization Settings'
+            }
+            ]
+            }
+        };
+        
+        let currentGallery = null;
+        let currentSlideIndex = 0;
+        
+        function openGallery(galleryId) {
+            currentGallery = galleryId;
+            currentSlideIndex = 0;
+            updateGallery();
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('modalTitle').textContent = galleries[galleryId].title;
+        }
+        
+        function closeGallery() {
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        
+        function changeSlide(direction) {
+            const gallery = galleries[currentGallery];
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = gallery.images.length - 1;
+            } else if (currentSlideIndex >= gallery.images.length) {
+                currentSlideIndex = 0;
+            }
+            
+            updateGallery();
+        }
+        
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateGallery();
+        }
+        
+        function updateGallery() {
+            const gallery = galleries[currentGallery];
+            const currentImage = gallery.images[currentSlideIndex];
+            
+            // Update main image and caption
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = currentImage.src;
+            modalImage.alt = currentImage.caption;
+            document.getElementById('modalCaption').textContent = currentImage.caption;
+            
+            // Update thumbnails
+            const thumbnailContainer = document.getElementById('thumbnailContainer');
+            thumbnailContainer.innerHTML = '';
+            
+            gallery.images.forEach((image, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = image.src;
+                thumbnail.alt = image.caption;
+                thumbnail.className = `thumbnail ${index === currentSlideIndex ? 'active' : ''}`;
+                thumbnail.onclick = () => goToSlide(index);
+                thumbnail.setAttribute('aria-label', `View image ${index + 1}: ${image.caption}`);
+                thumbnailContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Close modal when clicking outside image
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('galleryModal')) {
+                closeGallery();
+            }
+        };
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (modal.style.display === 'block') {
+                if (event.key === 'Escape') {
+                    closeGallery();
+                } else if (event.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>

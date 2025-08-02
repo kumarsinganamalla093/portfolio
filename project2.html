@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkins CI/CD Pipeline | DevOps Portfolio</title>
+    <meta name="description" content="Automated Jenkins CI/CD pipeline for Spring Petclinic with security scanning, Docker packaging, and deployment">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main class="container">
+        <article class="project">
+            <header class="project-header">
+                <h1>Jenkins CI/CD Pipeline for Spring Petclinic</h1>
+                <p class="subtitle">Automated build, test, security scanning, and deployment pipeline with Docker and Nexus integration</p>
+            </header>
+            
+            <section class="project-hero">
+                <figure class="project-hero-image">
+                    <img src="images/logojenkinsarch.png"Jenkins Pipeline Architecture">
+                </figure>
+                
+                <aside class="project-meta">
+                    <div class="meta-item">
+                        <h3>Role</h3>
+                        <p>DevOps Engineer</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Project Type</h3>
+                        <p>CI/CD Pipeline Implementation</p>
+                    </div>
+                    
+                    <div class="meta-item">
+                        <h3>Technologies</h3>
+                        <div class="tech-stack">
+                            <span class="tech-item">Jenkins</span>
+                            <span class="tech-item">Docker</span>
+                            <span class="tech-item">SonarQube</span>
+                            <span class="tech-item">Trivy</span>
+                            <span class="tech-item">Nexus</span>
+                            <span class="tech-item">Maven</span>
+                            <span class="tech-item">JDK 17</span>
+                            <span class="tech-item">AWS S3</span>
+                        </div>
+                    </div>
+                    
+                    <a href="https://github.com/spkumar17/spring-petclinic.git" class="github-link" target="_blank" rel="noopener noreferrer">
+                        <i class="fab fa-github"></i> View on GitHub
+                    </a>
+                </aside>
+            </section>
+            
+            <section class="project-content">
+                <section class="project-section">
+                    <h2>Project Overview</h2>
+                    <p>Implemented a comprehensive Jenkins CI/CD pipeline for the Spring Petclinic application that automates the entire software delivery process from code commit to production deployment. The pipeline incorporates security scanning at multiple stages, quality gates, artifact management with Nexus, Docker image building, and deployment to multiple environments. The solution ensures consistent, reliable, and secure software releases with full traceability.</p>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Pipeline Stages</h2>
+                    
+                    <article>
+                        <h3>1. Code Checkout</h3>
+                        <p>The pipeline begins by checking out the source code from the GitHub repository:</p>
+                        <div class="command-block">
+                            <code>git branch: 'main', url: 'https://github.com/spkumar17/spring-petclinic.git'</code>
+                        </div>
+                    </article>
+                    
+                    <article>
+                        <h3>2. Compilation</h3>
+                        <p>Maven compiles the Java source code:</p>
+                        <div class="command-block">
+                            <code>mvn compile</code>
+                        </div>
+                    </article>
+                    
+                    <article>
+                        <h3>3. Security Scanning</h3>
+                        <p>Multiple security scanning tools are integrated:</p>
+                        <ul>
+                            <li><strong>Trivy</strong>: Filesystem vulnerability scanning</li>
+                            <li><strong>SonarQube</strong>: Static code analysis with quality gates</li>
+                            <li><strong>OWASP Dependency-Check</strong>: Dependency vulnerability analysis</li>
+                        </ul>
+                        <div class="command-block">
+                            <code>trivy fs --format table -o trivyfs.html .</code>
+                        </div>
+                    </article>
+                    
+                    <article>
+                        <h3>4. Build & Package</h3>
+                        <p>Maven packages the application and deploys artifacts to Nexus:</p>
+                        <div class="command-block">
+                            <code>mvn -s $mavensettings clean deploy -DskipTests=true</code>
+                        </div>
+                    </article>
+                    
+                    <article>
+                        <h3>5. Docker Image Build</h3>
+                        <p>Builds Docker images with versioned tags:</p>
+                        <div class="command-block">
+                            <code>docker build -t prasannakumarsinganamalla431/petclinic:${BUILD_NUMBER} .</code>
+                        </div>
+                    </article>
+                    
+                    <article>
+                        <h3>6. Artifact Storage</h3>
+                        <p>Stores artifacts in multiple repositories:</p>
+                        <ul>
+                            <li>Docker Hub for public image distribution</li>
+                            <li>Nexus for private image storage</li>
+                            <li>AWS S3 for build artifacts</li>
+                        </ul>
+                    </article>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Features</h2>
+                    
+                    <article>
+                        <h3>Security Integration</h3>
+                        <p>Multiple security tools are integrated throughout the pipeline:</p>
+                        <ul>
+                            <li><strong>Trivy</strong> scans for vulnerabilities in both filesystem and Docker images</li>
+                            <li><strong>SonarQube</strong> enforces code quality standards before deployment</li>
+                            <li><strong>OWASP Dependency-Check</strong> identifies vulnerable dependencies</li>
+                            <li>All security reports are archived and attached to notifications</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Artifact Management</h3>
+                        <p>Comprehensive artifact management strategy:</p>
+                        <ul>
+                            <li>Maven artifacts stored in Nexus repository</li>
+                            <li>Docker images pushed to both Docker Hub and Nexus</li>
+                            <li>Build artifacts archived in AWS S3</li>
+                            <li>Versioned using Jenkins build numbers</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Notification System</h3>
+                        <p>Email notifications with detailed build information:</p>
+                        <ul>
+                            <li>Build status and console output link</li>
+                            <li>Attached security scan reports (Trivy, SonarQube, OWASP)</li>
+                            <li>Links to Nexus repositories</li>
+                            <li>Customizable recipient list</li>
+                        </ul>
+                    </article>
+                    
+                    <article>
+                        <h3>Infrastructure Requirements</h3>
+                        <p>The pipeline requires several pre-configured components:</p>
+                        <div class="command-block">
+                            <code># Jenkins with JDK 17 and Maven 3
+sudo apt install openjdk-17-jre
+
+# Docker installation
+sudo apt install docker.io
+sudo usermod -aG docker jenkins
+sudo usermod -aG docker ubuntu
+
+# SonarQube (Docker)
+docker run -d --name sonar -p 9000:9000 sonarqube:lts-community</code>
+                        </div>
+                    </article>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Architecture Diagram</h2>
+                    <figure>
+                        <img src="images/logojenkinsarch.png" alt="Jenkins Pipeline Architecture" class="architecture-diagram">
+                        <figcaption>Jenkins CI/CD Pipeline Architecture</figcaption>
+                    </figure>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Key Achievements</h2>
+                    <ul>
+                        <li>Implemented fully automated CI/CD pipeline for Spring Boot application</li>
+                        <li>Integrated multiple security scanning tools at different stages</li>
+                        <li>Configured quality gates to prevent deployment of vulnerable code</li>
+                        <li>Implemented artifact management with Nexus for both Maven and Docker artifacts</li>
+                        <li>Configured comprehensive email notifications with security reports</li>
+                        <li>Enabled deployment to multiple environments (Docker Hub, Nexus, AWS S3)</li>
+                        <li>Documented infrastructure requirements and setup process</li>
+                    </ul>
+                </section>
+                
+                <section class="project-section">
+                    <h2>Work Samples</h2>
+                    <div class="work-samples">
+                        <figure class="work-sample" onclick="openGallery('pipeline')">
+                            <img src="images/Jenkins_logo.svg.png" alt="Jenkins Pipeline">
+                            <figcaption class="work-sample-caption">
+                                <h3>Pipeline Screenshots</h3>
+                                <p>8 images</p>
+                            </figcaption>
+                        </figure>   
+                    </div>
+                </section>
+            </section>
+        </article>
+        
+        <!-- Gallery Modal -->
+        <div id="galleryModal" class="modal" role="dialog" aria-modal="true" aria-hidden="true" aria-labelledby="modalTitle">
+            <span class="close" onclick="closeGallery()" aria-label="Close gallery">&times;</span>
+            <div class="modal-content">
+                <span class="nav-arrow prev" onclick="changeSlide(-1)" aria-label="Previous image">&#10094;</span>
+                <span class="nav-arrow next" onclick="changeSlide(1)" aria-label="Next image">&#10095;</span>
+                <img id="modalImage" class="modal-image" src="" alt="">
+                <div id="modalCaption" class="modal-caption"></div>
+                <div class="gallery-thumbnails" id="thumbnailContainer"></div>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Gallery data
+        const galleries = {
+            'pipeline': {
+                title: "Pipeline Execution Screenshots",
+                images: [
+                {
+                    src: 'images/project2/consoleoutput.png',
+                    caption: 'Full Jenkins pipeline console output'
+                },
+                {
+                    src: 'images/project2/trivifs.png',
+                    caption: 'Trivy filesystem vulnerability scan results'
+                },
+                {
+                    src: 'images/project2/sonar-petdashboard.png',
+                    caption: 'SonarQube code quality dashboard'
+                },
+                {
+                    src: 'images/project2/Nexus-Browse.png',
+                    caption: 'Nexus repository browsing interface'
+                },
+                {
+                    src: 'images/project2/mailnotification.png',
+                    caption: 'Pipeline status email notification'
+                },
+                {
+                    src: 'images/project2/finalpipline.png',
+                    caption: 'Complete Jenkins pipeline stage view'
+                },
+                {
+                    src: 'images/project2/dockerhub.png',
+                    caption: 'Docker Hub repository with published images'
+                },
+                {
+                    src: 'images/project2/cred.png',
+                    caption: 'Jenkins credential management interface'
+                }
+            ]
+            },
+            
+         
+        };
+        
+        let currentGallery = null;
+        let currentSlideIndex = 0;
+        
+        function openGallery(galleryId) {
+            currentGallery = galleryId;
+            currentSlideIndex = 0;
+            updateGallery();
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'block';
+            modal.setAttribute('aria-hidden', 'false');
+            document.body.style.overflow = 'hidden';
+            document.getElementById('modalTitle').textContent = galleries[galleryId].title;
+        }
+        
+        function closeGallery() {
+            const modal = document.getElementById('galleryModal');
+            modal.style.display = 'none';
+            modal.setAttribute('aria-hidden', 'true');
+            document.body.style.overflow = '';
+        }
+        
+        function changeSlide(direction) {
+            const gallery = galleries[currentGallery];
+            currentSlideIndex += direction;
+            
+            if (currentSlideIndex < 0) {
+                currentSlideIndex = gallery.images.length - 1;
+            } else if (currentSlideIndex >= gallery.images.length) {
+                currentSlideIndex = 0;
+            }
+            
+            updateGallery();
+        }
+        
+        function goToSlide(index) {
+            currentSlideIndex = index;
+            updateGallery();
+        }
+        
+        function updateGallery() {
+            const gallery = galleries[currentGallery];
+            const currentImage = gallery.images[currentSlideIndex];
+            
+            // Update main image and caption
+            const modalImage = document.getElementById('modalImage');
+            modalImage.src = currentImage.src;
+            modalImage.alt = currentImage.caption;
+            document.getElementById('modalCaption').textContent = currentImage.caption;
+            
+            // Update thumbnails
+            const thumbnailContainer = document.getElementById('thumbnailContainer');
+            thumbnailContainer.innerHTML = '';
+            
+            gallery.images.forEach((image, index) => {
+                const thumbnail = document.createElement('img');
+                thumbnail.src = image.src;
+                thumbnail.alt = image.caption;
+                thumbnail.className = `thumbnail ${index === currentSlideIndex ? 'active' : ''}`;
+                thumbnail.onclick = () => goToSlide(index);
+                thumbnail.setAttribute('aria-label', `View image ${index + 1}: ${image.caption}`);
+                thumbnailContainer.appendChild(thumbnail);
+            });
+        }
+        
+        // Close modal when clicking outside image
+        window.onclick = function(event) {
+            if (event.target === document.getElementById('galleryModal')) {
+                closeGallery();
+            }
+        };
+        
+        // Keyboard navigation
+        document.addEventListener('keydown', function(event) {
+            const modal = document.getElementById('galleryModal');
+            if (modal.style.display === 'block') {
+                if (event.key === 'Escape') {
+                    closeGallery();
+                } else if (event.key === 'ArrowLeft') {
+                    changeSlide(-1);
+                } else if (event.key === 'ArrowRight') {
+                    changeSlide(1);
+                }
+            }
+        });
+    </script>
+</body>
+</html>
