@@ -7,12 +7,16 @@
     <meta name="description" content="Automated container deployment of a MERN application with security scanning and quality checks using GitLab CI/CD.">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="project.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="index.html"><i class="fas fa-arrow-left"></i> Back to Portfolio</a></li>
+                <li><button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+                  <i class="fas fa-moon"></i>
+                </button></li>
             </ul>
         </nav>
     </header>
@@ -71,26 +75,26 @@
                     <h2>Core Components & Pipeline Stages</h2>
                     <p>The solution leverages Docker Compose to manage the MERN application's services and integrates various tools within a multi-stage GitLab CI/CD pipeline:</p>
                     
-                    <div class="feature-grid">
-                        <div class="feature-card">
+                    <div class="about-grid">
+                        <div class="about-card">
                             <i class="fas fa-box"></i>
                             <h3>Containerization (Docker Compose)</h3>
                             <p>Packaged the frontend (React), backend (Node.js/Express), and database (MongoDB) into isolated Docker containers with proper networking and persistent storage.</p>
                         </div>
                         
-                        <div class="feature-card">
+                        <div class="about-card">
                             <i class="fas fa-shield-alt"></i>
                             <h3>Security Scanning (Trivy)</h3>
                             <p>Integrated Trivy for comprehensive vulnerability scanning of both application filesystem and built container images, ensuring early detection of security risks.</p>
                         </div>
                         
-                        <div class="feature-card">
+                        <div class="about-card">
                             <i class="fas fa-tasks"></i>
                             <h3>Code Quality Gates (SonarQube)</h3>
                             <p>Implemented SonarQube analysis to enforce stringent code quality standards and identify potential bugs or code smells before deployment.</p>
                         </div>
                         
-                        <div class="feature-card">
+                        <div class="about-card">
                             <i class="fas fa-rocket"></i>
                             <h3>Automated CI/CD Pipeline</h3>
                             <p>Configured a 5-stage GitLab CI/CD workflow to automate the entire deployment lifecycle, including parallel execution for efficiency.</p>
@@ -103,7 +107,8 @@
                     
                     <h3>Container Architecture (<code>docker-compose.yml</code>)</h3>
                     <p>The application's services are defined and orchestrated using the following Docker Compose configuration:</p>
-                    <pre><code class="language-yaml">version: '3.8'
+                    <div class="command-block">
+                        <code>version: '3.8'
 
 services:
   frontend:
@@ -141,8 +146,8 @@ networks:
 
 volumes:
   mongo-data:
-    driver: local
-</code></pre>
+    driver: local</code>
+                    </div>
                     <p>This setup ensures proper communication between services and persistent data storage for MongoDB.</p>
                     
                     <h3>GitLab CI/CD Pipeline Stages</h3>

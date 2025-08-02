@@ -58,6 +58,49 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+// Theme Toggle Functionality
+document.addEventListener('DOMContentLoaded', function() {
+  const themeToggle = document.getElementById('theme-toggle');
+  const mobileThemeToggle = document.getElementById('mobile-theme-toggle');
+  const body = document.body;
+  
+  // Check for saved theme preference or default to 'light'
+  const currentTheme = localStorage.getItem('theme') || 'light';
+  body.setAttribute('data-theme', currentTheme);
+  
+  // Update toggle button icons
+  function updateToggleIcons(theme) {
+    const icon = theme === 'dark' ? 'fa-sun' : 'fa-moon';
+    if (themeToggle) {
+      themeToggle.querySelector('i').className = `fas ${icon}`;
+    }
+    if (mobileThemeToggle) {
+      mobileThemeToggle.querySelector('i').className = `fas ${icon}`;
+    }
+  }
+  
+  // Initialize icons
+  updateToggleIcons(currentTheme);
+  
+  // Toggle theme function
+  function toggleTheme() {
+    const currentTheme = body.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    body.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateToggleIcons(newTheme);
+  }
+  
+  // Add event listeners
+  if (themeToggle) {
+    themeToggle.addEventListener('click', toggleTheme);
+  }
+  if (mobileThemeToggle) {
+    mobileThemeToggle.addEventListener('click', toggleTheme);
+  }
+});
+
 // Enhanced smooth scrolling with offset for fixed header
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
   anchor.addEventListener('click', function (e) {

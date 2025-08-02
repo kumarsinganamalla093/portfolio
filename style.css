@@ -176,6 +176,33 @@ header.scrolled {
   font-size: 20px;
 }
 
+/* Theme Toggle */
+.theme-toggle {
+  background: none;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color);
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  font-size: 16px;
+}
+
+.theme-toggle:hover {
+  background: var(--primary-color);
+  color: white;
+  transform: scale(1.1);
+}
+
+.mobile-theme-toggle {
+  margin: 10px auto;
+  display: block;
+}
+
 /* Mobile Navigation */
 .mobile-menu-btn {
   display: none;
@@ -909,7 +936,7 @@ header.scrolled {
 .card p {
   font-size: 1rem;
   margin-bottom: 25px;
-  color: var(--text-light);
+  color: var(--text-secondary);
   line-height: 1.6;
 }
 
@@ -966,7 +993,7 @@ header.scrolled {
 }
 
 .pro-tip {
-  background: linear-gradient(135deg, #f8f9ff 0%, #e3f2fd 100%);
+  background: var(--bg-secondary);
   padding: 20px;
   border-radius: 12px;
   color: var(--secondary-color);
@@ -977,7 +1004,7 @@ header.scrolled {
 }
 
 .resume-download {
-  background: white;
+  background: var(--card-bg);
   padding: 30px;
   border-radius: 12px;
   border: 2px solid var(--primary-color);
@@ -992,7 +1019,7 @@ header.scrolled {
 }
 
 .resume-download p {
-  color: var(--text-light);
+  color: var(--text-secondary);
   margin-bottom: 20px;
   font-size: 0.95rem;
 }
@@ -1018,7 +1045,8 @@ form textarea {
   font-size: 1rem;
   transition: all 0.3s ease;
   font-family: inherit;
-  background: white;
+  background: var(--card-bg);
+  color: var(--text-primary);
 }
 
 form input:focus,
