@@ -52,7 +52,8 @@
   </nav>
   </header>
 
-    <section id="home" class="hero">
+    <main>
+      <section id="home" class="hero" role="banner">
         <div class="hero-container">
           <!-- Left side: Text -->
           <div class="hero-content">
@@ -63,14 +64,14 @@
             </p>
       
             <div class="hero-buttons">
-              <a href="#contact" class="btn btn-primary">Get In Touch →</a>
-              <a href="#work-experience" class="btn btn-outline">View My Work</a>
+              <a href="#contact" class="btn btn-primary" aria-label="Contact Prasanna Kumar">Get In Touch →</a>
+              <a href="#work-experience" class="btn btn-outline" aria-label="View work experience">View My Work</a>
             </div>
           </div>
       
           <!-- Right side: Profile Image -->
           <div class="hero-image">
-            <img src="images/myimage.jpeg" alt="Prasanna Kumar" class="profile-img">
+            <img src="images/myimage.jpeg" alt="Professional headshot of Prasanna Kumar Singanamalla" class="profile-img" loading="eager">
           </div>
         </div>
       </section>
@@ -408,8 +409,13 @@
     
     
 
-    <footer>
-        <p>&copy; 2025 PrasannaKumar. All rights reserved.</p>
+    </main>
+
+    <footer role="contentinfo">
+        <div class="footer-content">
+            <p>&copy; 2025 Prasanna Kumar Singanamalla. All rights reserved.</p>
+            <p class="footer-note">Built with passion for DevOps and automation</p>
+        </div>
     </footer>
 
 </body>
